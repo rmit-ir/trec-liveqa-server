@@ -51,6 +51,9 @@ type Answer struct {
 	Time      int64    `xml:"time,attr"`
 	Content   string   `xml:"content"`
 	Resources string   `xml:"resources"`
+	TitleFoci string   `xml:"title-foci"`
+	BodyFoci  string   `xml:"body-foci"`
+	Summary   string   `xml:"summary"`
 }
 
 // AsXML returns a XML representation of the Answer structure, suitable for
