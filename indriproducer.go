@@ -12,32 +12,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"unicode"
 )
-
-func Sanitize(r rune) rune {
-	switch {
-	case unicode.IsPunct(r):
-		return ' '
-	case unicode.IsMark(r):
-		return ' '
-	case unicode.IsSymbol(r):
-		return ' '
-	}
-	return r
-}
-
-func Truncate(s string, limit int) string {
-	var buf bytes.Buffer
-	buf.WriteString(s)
-
-	if buf.Len() > limit-3 {
-		buf.Truncate(limit - 3)
-		return buf.String() + "..."
-	} else {
-		return buf.String()
-	}
-}
 
 type IndriAnswerProducer struct {
 	Repository     string   `json:"repository"`
@@ -177,10 +152,6 @@ func GetPassage(text string, start int, end int) string {
 		end = len(words)
 	}
 	return strings.Join(words[start:end], " ")
-}
-
-func GetQueryTerms(text string) []string {
-	return strings.Fields(strings.Map(Sanitize, strings.ToLower(text)))
 }
 
 func PrepareOrdinaryQuery(terms []string) string {
