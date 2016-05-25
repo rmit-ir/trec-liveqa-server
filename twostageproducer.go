@@ -50,9 +50,11 @@ func (ap *TwoStageAnswerProducer) GetAnswer(result chan *Answer, q *Question) {
 
 	for _, retriever := range retrievers {
 		passages, err = retriever.GetPassages(q, 10)
-		if err == nil {
-			break
+		if err != nil {
+			answer = NewErrorAnswer(q, err)
+			continue
 		}
+		break
 	}
 
 	for _, summarizer := range summarizers {
