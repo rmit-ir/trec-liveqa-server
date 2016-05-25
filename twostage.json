@@ -1,0 +1,4 @@
+{ 
+    "retriever-url" : "http://url.to.retriever:port",
+    "summarizer-url" : "http://url.to.summarizer:port"
+}
